@@ -1,12 +1,17 @@
-const robotron = document.querySelector("#robotron");
+const controle = document.querySelectorAll("[data-controle]");
 
-robotron.addEventListener("click", (evento) => {
-  console.log(evento);
+controle.forEach((elemento) => {
+  elemento.addEventListener("click", (evento) => {
+    manipulaDados(evento.target.dataset.controle, evento.target.parentNode);
+  });
 });
 
-function dizOi(nome) {
-  console.log("Oi " + nome);
-  console.log("Bem-vindo ao Robotron 2023");
-}
+function manipulaDados(operacao, controle) {
+  const peca = controle.querySelector("[data-contador]");
 
-dizOi("Pedro");
+  if (operacao === "-") {
+    peca.value = parseInt(peca.value) - 1;
+  } else {
+    peca.value = parseInt(peca.value) + 1;
+  }
+}
